@@ -52,14 +52,14 @@ router.route('/products')
 
   .post(function (req, res) {
 
-    var product = new Product();	
+    var product = new Product();
     product.title = req.body.title;
     product.description = req.body.description;
     product.purchasePrice = req.body.purchasePrice;
     product.salePrice = req.body.salePrice;
     product.status = req.body.status;
     product.image = "chaquetanegra.jpg";
-    product.category = req.body.category; 
+    product.category = req.body.category;
 
     product.save(function (err) {
       if (err)
@@ -75,6 +75,22 @@ router.route('/products')
         res.send(err);
 
       res.json(products);
+    });
+  });
+
+router.route('/products/:product_id')
+
+  .delete(function (req, res) {
+
+    var productId = req.params.product_id;
+    console.log(productId);
+    Product.remove({"_id": productId}, function(err){
+      if(err){
+        res.send(err);
+      }
+      else{
+        res.json({ message: 'Product deleted!' });
+      }
     });
   });
 
