@@ -69,6 +69,32 @@ router.route('/products')
     });
   })
 
+  .put(function (req, res) {
+
+    var idProd = req.body._id;
+    console.log(idProd);
+
+    Product.findById(idProd, function (err, product) {
+      if (err){
+        res.send(err);
+      }
+      product.title = req.body.title;
+      product.description = req.body.description;
+      product.purchasePrice = req.body.purchasePrice;
+      product.salePrice = req.body.salePrice;
+      product.status = req.body.status;
+      product.category = req.body.category;
+
+      product.save(function (err) {
+        if (err)
+          res.send(err);
+  
+        res.json({ message: 'Product modificated!' });
+      });
+    });
+
+  })
+
   .get(function (req, res) {
     Product.find(function (err, products) {
       if (err)
@@ -84,11 +110,11 @@ router.route('/products/:product_id')
 
     var productId = req.params.product_id;
     console.log(productId);
-    Product.remove({"_id": productId}, function(err){
-      if(err){
+    Product.remove({ "_id": productId }, function (err) {
+      if (err) {
         res.send(err);
       }
-      else{
+      else {
         res.json({ message: 'Product deleted!' });
       }
     });
