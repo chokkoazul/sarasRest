@@ -106,6 +106,19 @@ router.route('/products')
 
 router.route('/products/:product_id')
 
+  .get(function (req, res) {
+
+  var productId = req.params.product_id;
+  
+  Product.findById(productId, function (err, product) {
+    if (err){
+      res.send(err);
+    }
+    res.json(product);
+  });
+
+})
+
   .delete(function (req, res) {
 
     var productId = req.params.product_id;
