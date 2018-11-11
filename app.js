@@ -53,14 +53,15 @@ router.route('/products')
   .post(function (req, res) {
 
     var product = new Product();
-    product.title = req.body.title;
-    product.description = req.body.description;
-    product.purchasePrice = req.body.purchasePrice;
-    product.salePrice = req.body.salePrice;
-    product.status = req.body.status;
-    product.image = "chaquetanegra.jpg";
-    product.category = req.body.category;
-
+    
+    product.numeropedido = req.body.numeropedido;
+    product.producto = req.body.producto;
+    product.color = req.body.color;
+    product.talla = req.body.talla;
+    product.costo = req.body.costo;
+    product.venta = req.body.venta;
+    product.estado = req.body.estado;
+      
     product.save(function (err) {
       if (err)
         res.send(err);
