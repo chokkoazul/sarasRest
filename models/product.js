@@ -3,13 +3,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ProductModelSchema = new Schema({
-    title:String,
-	description:String,
-	purchasePrice:Number,
-    salePrice:Number,
-	status:String,
-	image:String,
-	category:String
+	numeropedido:Number,
+	producto:String,
+	color:String,
+	talla:String,
+    costo:Number,
+	venta:Number,
+	estado:String
 });
 
 module.exports = mongoose.model('Product', ProductModelSchema );
